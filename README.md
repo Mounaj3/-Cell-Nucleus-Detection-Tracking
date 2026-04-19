@@ -1,15 +1,15 @@
 # Cell Nucleus Detection & Tracking
 
-**M2 MIAS — Deep Learning for Imaging, 2024-2025**  
+**Master 2 project — Deep Learning for Imaging, 2024-2025**  
 Université de Lille × Centrale Lille
 
 ---
 
 ## What is this project about?
 
-During my master's course *Deep Learning for Imaging*, we had to work on cell tracking to evaluate the effectiveness of cancer treatments. The idea is simple: by following how cell nuclei move over time, we can study the impact of a drug on them.
+We had to work on cell tracking to evaluate the effectiveness of cancer treatments, as researchers follow how cell nuclei move over time to  study the impact of a drug on them.
 
-The problem is that the usual method — staining cells with blue dye — damages the DNA and biases the results. So instead, I worked with **phase-contrast microscopy images**, which are non-invasive but trickier to work with (the images can be noisy and hard to interpret).
+The problem is that the usual method — staining cells with blue dye — damages the DNA and biases the results. So instead, we need to work with phase-contrast microscopy images, which are non-invasive but challenging to work with (the images can be noisy and hard to interpret).
 
 The goal was to build a pipeline that automatically detects and tracks cell nuclei in those images using deep learning.
 
@@ -26,7 +26,7 @@ Phase-contrast images
         ↓
   Bounding boxes → pixel centre points (cx, cy)
         ↓
-  Trackpy nucleus tracking across frames
+  Trackpy:  nucleus tracking across frames
         ↓
   MSD analysis
 ```
@@ -35,7 +35,7 @@ Phase-contrast images
 
 ## Annotation
 
-I manually annotated **20 images** using [Label Studio](https://labelstud.io/) with the **Image Object Detection** template (standard bounding boxes). The export is in **YOLO format** — one `.txt` label file per image with normalized coordinates.
+I manually annotated **20 images** using [Label Studio](https://labelstud.io/) with the **[Image Object Detection](https://labelstud.io/templates/image_bbox.html)** template (standard bounding boxes). The export is in **YOLO format** — one `.txt` label file per image with normalized coordinates.
 
 Single class: `Cell`
 
@@ -46,9 +46,9 @@ train: images
 val: images
 nc: 1
 names: ['Cell']
+
 ```
 
-> Note: I used the same images for training and validation because the dataset was small. Not ideal, but it's a first trial.
 
 ---
 
@@ -58,7 +58,7 @@ Here's an example of what the detection looks like on a phase-contrast image:
 
 ![Segmentation example](small_data_cours1_t081_c002.png)
 
-The model detects most nuclei correctly. Some are missed, mainly because 20 training images is not a lot — but the results are promising for a first attempt.
+The model detects most nuclei correctly. Some are missed, mainly because of the small training dataset (20 training images),but the results are promising for a first attempt.
 
 ---
 
@@ -78,24 +78,17 @@ After running the full pipeline:
 git clone https://github.com/YOUR_USERNAME/cell_tracking.git
 cd cell_tracking
 pip install ultralytics trackpy pandas numpy matplotlib seaborn opencv-python
-jupyter notebook notebooks/full_pipeline.ipynb
+jupyter notebook notebooks/Pipeline.ipynb
 ```
-
-> Run the notebook from the **project root**, not from inside `notebooks/`.
-
-The notebook is self-contained and walks through every step with comments.
 
 ---
 
 ## Tools used
 
-| Tool | What I used it for |
-|---|---|
-| [YOLOv8](https://github.com/ultralytics/ultralytics) | Cell nucleus detection (segmentation) |
-| [Label Studio](https://labelstud.io/) | Manual image annotation |
-| [Trackpy](http://soft-matter.github.io/trackpy/) | Linking nuclei across frames + filtering |
-| [Matplotlib](https://matplotlib.org/) / [Seaborn](https://seaborn.pydata.org/) | Visualizing trajectories and MSD |
-| [OpenCV](https://opencv.org/) | Image loading and saving |
+
+- [YOLOv8](https://github.com/ultralytics/ultralytics): Cell nucleus detection (segmentation) 
+- [Label Studio](https://labelstud.io/): Manual image annotation (training dataset preparation)
+| [Trackpy](http://soft-matter.github.io/trackpy/): Linking detected nuclei across frames + filtering
 
 ---
 
