@@ -56,7 +56,7 @@ names: ['Cell']
 
 Here's an example of what the detection looks like on a phase-contrast image:
 
-![Segmentation example](small_data_cours1_t081_c002.png){ width=300px }
+![Segmentation example](small_data_cours1_t081_c002.png)
 
 The model detects most nuclei correctly. Some are missed, mainly because of the small training dataset (20 training images),but the results are promising for a first attempt.
 
