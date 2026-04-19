@@ -56,7 +56,7 @@ names: ['Cell']
 
 Here's an example of what the detection looks like on a phase-contrast image:
 
-![Segmentation example](small_data_cours1_t081_c002.png)
+![Segmentation example](small_data_cours1_t081_c002.png){ width=300px }
 
 The model detects most nuclei correctly. Some are missed, mainly because of the small training dataset (20 training images),but the results are promising for a first attempt.
 
@@ -88,7 +88,7 @@ jupyter notebook notebooks/Pipeline.ipynb
 
 - [YOLOv8](https://github.com/ultralytics/ultralytics): Cell nucleus detection (segmentation) 
 - [Label Studio](https://labelstud.io/): Manual image annotation (training dataset preparation)
-| [Trackpy](http://soft-matter.github.io/trackpy/): Linking detected nuclei across frames + filtering
+- [Trackpy](http://soft-matter.github.io/trackpy/): Linking detected nuclei across frames + filtering
 
 ---
 
